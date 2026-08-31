@@ -9,7 +9,7 @@ st.sidebar.header("Set Quantum Numbers")
 n = st.sidebar.number_input("Principal quantum number (n)", min_value=1, max_value=10, value=1, step=1)
 l = st.sidebar.number_input("Azimuthal quantum number (l)", min_value=0, max_value=n-1, value=0, step=1, key=f"l_for_n{n}")
 m = st.sidebar.number_input("Magnetic quantum number (m)", min_value=-l, max_value=l, value=0, step=1, key=f"m_for_l{l}")
-space = st.sidebar.slider("Coordinate Size", min_value=10, max_value=100, value=50, step=5)
+space = st.sidebar.slider("Coordinate Size", min_value=10, max_value=50, value=15, step=5)
 resolution = st.sidebar.slider("Coordinate Resolution", min_value=10, max_value=100, value=50, step=2)
 
 if st.sidebar.button("Start Simulation"):
