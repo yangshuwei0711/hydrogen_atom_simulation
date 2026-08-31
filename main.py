@@ -6,15 +6,17 @@ from hydrogen_sim import WaveFunction as wf
 st.title("Hydrogen Electron Cloud Simulation")
 st.sidebar.header("Set Quantum Numbers")
 
-n = st.sidebar.number_input("Principal quantum number (n)", min_value=1, max_value=10, value=3, step=1)
-l = st.sidebar.number_input("Azimuthal quantum number (l)", min_value=0, max_value=n-1, value=2, step=1)
-m = st.sidebar.number_input("Magnetic quantum number (m)", min_value=-l, max_value=l, value=0, step=1)
+n = st.sidebar.number_input("Principal quantum number (n)", min_value=1, max_value=10, value=1, step=1)
+l = st.sidebar.number_input("Azimuthal quantum number (l)", min_value=0, max_value=n-1, value=0, step=1, key=f"l_for_n{n}")
+m = st.sidebar.number_input("Magnetic quantum number (m)", min_value=-l, max_value=l, value=0, step=1, key=f"m_for_l{l}")
+space = st.sidebar.slider("Coordinate Size", min_value=10, max_value=100, value=50, step=5)
+resolution = st.sidebar.slider("Coordinate Resolution", min_value=10, max_value=100, value=50, step=2)
 
 if st.sidebar.button("Start Simulation"):
     with st.spinner("Calculating probability density..."):
-        x = np.linspace(-20, 20, 50)
-        y = np.linspace(-20, 20, 50)
-        z = np.linspace(-20, 20, 50)
+        x = np.linspace(-space, space, resolution)
+        y = np.linspace(-space, space, resolution)
+        z = np.linspace(-space, space, resolution)
         
         X, Y, Z = np.meshgrid(x, y, z, indexing='ij')
         r = np.sqrt(X**2 + Y**2 + Z**2)
